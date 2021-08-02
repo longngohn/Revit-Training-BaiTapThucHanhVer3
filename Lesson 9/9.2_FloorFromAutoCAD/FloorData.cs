@@ -18,7 +18,7 @@ namespace AlphaBIM
                     AllCurve.Append(edge.AsCurve());
                 }
             }
-
+//a
           
         }
 
