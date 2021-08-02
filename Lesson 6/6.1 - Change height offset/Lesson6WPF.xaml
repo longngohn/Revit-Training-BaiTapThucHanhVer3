@@ -1,0 +1,50 @@
+﻿<Window x:Class="AlphaBIM.Lesson6Wpf"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlphaBIM"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400" Width="400" Height="298">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="50"></RowDefinition>
+
+            <RowDefinition Height="50"></RowDefinition>
+
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBox
+            Grid.Row="0"
+            Style="{StaticResource MaterialDesignFilledTextBox}"
+            Text ="{Binding TopElevation}"
+            VerticalAlignment="Top"
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            MaxWidth="400"
+            materialDesign:HintAssist.Hint="Nhập vào cao độ Off của sàn (MM)"
+             />
+
+        <Button Content="Enter" 
+                Width="100" Grid.Row="1" 
+                Click="Click" 
+                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                BorderBrush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+
+
+    </Grid>
+</Window>

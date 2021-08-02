@@ -1,0 +1,178 @@
+﻿<mah:MetroWindow x:Name="MainWindow" x:Class="AlphaBIM.ColumnFromCadWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+                 mc:Ignorable="d"
+                 xmlns:alphaBim="clr-namespace:AlphaBIM"
+                 d:DataContext="{d:DesignInstance alphaBim:ColumnFromCadViewModel}"
+
+                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+
+                 Title="Alpha BIM | Revit API Training | Column From AutoCAD"
+
+                 ResizeMode="NoResize"
+                 ShowInTaskbar="True"
+                 WindowStartupLocation="CenterScreen"
+                 Height="275.959" Width="558.031"
+                 Topmost="True"
+                 
+              
+                 >
+
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MahApps.Metro.ALB;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="/MahApps.Metro.ALB;component/styles/light.blue.xaml" />
+
+                <ResourceDictionary
+                    Source="/MaterialDesignThemes.Wpf.ALB;component/Themes/materialdesigntheme.light.xaml" />
+                <ResourceDictionary
+                    Source="/MaterialDesignThemes.Wpf.ALB;component/Themes/materialdesigntheme.defaults.xaml" />
+                <ResourceDictionary Source="/AlphaBIMWPF;component/Resource/Styles.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}" />
+
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Button Click="OpenWebSite">
+                <materialDesign:PackIcon Kind="HomeCircle"
+                                         Width="22"
+                                         Height="22" />
+            </Button>
+
+            <Button Click="CustomDevelopment">
+                <materialDesign:PackIcon Kind="DeveloperBoard"
+                                         Width="22"
+                                         Height="22" />
+
+            </Button>
+
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Click="Feedback">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FaceAgent"
+                                                     Width="22" Height="22"
+                                                     VerticalAlignment="Center" />
+                            <TextBlock Margin="4 0 0 0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+
+        </mah:WindowCommands>
+
+    </mah:MetroWindow.RightWindowCommands>
+
+    <DockPanel LastChildFill="False">
+
+        <DockPanel Dock="Bottom"
+                   LastChildFill="True">
+
+            <Button DockPanel.Dock="Right"
+                    Content="CANCEL"
+                    Width="100"
+                    Click="btnCancel_Click"
+                    IsCancel="True" />
+
+            <Button DockPanel.Dock="Right"
+                    HorizontalAlignment="Right"
+                    Content="OK"
+                    Width="100" 
+                    Click="btnOk_Click" 
+                    />
+
+            <Grid DockPanel.Dock="Right">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+
+                <ProgressBar Name="ProgressWindow"
+                             Height="30"
+                             Foreground="#5B5EE7" />
+
+                <TextBlock Grid.ColumnSpan="2"
+                           Text="{Binding Percent, StringFormat={}{0:0}%}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
+            </Grid>
+
+        </DockPanel>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+            <ComboBox Grid.Column="0" Grid.ColumnSpan="2"
+                      materialDesign:HintAssist.Hint="Choose Layer of Hatch"
+                      ItemsSource="{Binding AllLayers}"
+                      SelectedItem="{Binding SelectedLayer}"
+                      IsEditable="True"
+                      ToolTip="Layer of hatch column in autoCAD" />
+
+            <ComboBox Grid.Column="0" Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding AllFamiliesColumn}"
+                      SelectedItem="{Binding SelectedFamilyColumn}"
+                      DisplayMemberPath="Name"
+                      IsEditable="True"
+                      materialDesign:HintAssist.Hint="Choose Column Family" />
+
+            <ComboBox Grid.Row="2" Grid.Column="0"
+                      ItemsSource="{Binding AllLevel}"
+                      SelectedItem="{Binding BaseLevel}"
+                      DisplayMemberPath="Name"
+                      IsEditable="True"
+                      materialDesign:HintAssist.Hint="Choose Base Level" />
+
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     ToolTip="The unit is millimeters"
+                     Text="{Binding BaseOffset}"
+                     materialDesign:HintAssist.Hint="Set Base Offset(mm)" />
+
+            <ComboBox Grid.Row="3" Grid.Column="0"
+                      ItemsSource="{Binding AllLevel}"
+                      SelectedItem="{Binding TopLevel}"
+                      DisplayMemberPath="Name"
+                      IsEditable="True"
+                      materialDesign:HintAssist.Hint="Choose Top Level" />
+
+            <TextBox Grid.Row="3" Grid.Column="1"
+                     ToolTip="The unit is millimeters"
+                     Text="{Binding TopOffset}"
+                     materialDesign:HintAssist.Hint="Set Top Offset(mm)" />
+
+        </Grid>
+
+    </DockPanel>
+
+</mah:MetroWindow>

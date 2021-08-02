@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DCFBE8E-8F0C-42C9-9F73-1B0BD23672A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AlphaBIM</RootNamespace>
+    <AssemblyName>AlphaBIM RevitTraining_Long</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2020\Revit.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2020\Revit.exe</StartProgram>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AlphaBIMWPF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dllReference\AlphaBIMWPF.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dllReference\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dllReference\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.ALB">
+      <HintPath>dllReference\MahApps.Metro.ALB.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.IconPacks">
+      <HintPath>dllReference\MahApps.Metro.IconPacks.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors.ALB">
+      <HintPath>dllReference\MaterialDesignColors.ALB.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf.ALB">
+      <HintPath>dllReference\MaterialDesignThemes.Wpf.ALB.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>dllReference\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>dllReference\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>dllReference\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors">
+      <HintPath>dllReference\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dllReference\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>dllReference\2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>dllReference\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>dllReference\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lesson 2\Lesson2Cmd.cs" />
+    <Compile Include="Lesson 2\PTBH.cs" />
+    <Compile Include="Lesson 3\Lesson 03TestCmd.cs" />
+    <Compile Include="Lesson 3\Lesson3ViewModel.cs" />
+    <Compile Include="Lesson 3\Lesson3WPF.xaml.cs">
+      <DependentUpon>Lesson3WPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 4\Lesson4Cmd.cs" />
+    <Compile Include="Lesson 5\Lesson 5Cmd.cs" />
+    <Compile Include="Lesson 6\6.1 - Change height offset\Lesson 6Cmd.cs" />
+    <Compile Include="Lesson 6\6.1 - Change height offset\Lesson6ViewModel.cs" />
+    <Compile Include="Lesson 6\6.1 - Change height offset\Lesson6WPF.xaml.cs">
+      <DependentUpon>Lesson6WPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 6\6.2 Tranfer Parameter\TransferCmd.cs" />
+    <Compile Include="Lesson 6\6.2 Tranfer Parameter\TransferLocSan.cs" />
+    <Compile Include="Lesson 6\6.2 Tranfer Parameter\TransferViewModel.cs" />
+    <Compile Include="Lesson 6\6.2 Tranfer Parameter\TransferWpf.xaml.cs">
+      <DependentUpon>TransferWpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 6\6.3 - Homework - Thay doi level cua floor\Bai2Cmd.cs" />
+    <Compile Include="Lesson 6\6.3 - Homework - Thay doi level cua floor\Bai2ViewModel.cs" />
+    <Compile Include="Lesson 6\6.3 - Homework - Thay doi level cua floor\Bai2Wpf.xaml.cs">
+      <DependentUpon>Bai2Wpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 7\7.1-AutoJoin - Upgrade\Lesson71Cmd.cs" />
+    <Compile Include="Lesson 7\7.1-AutoJoin - Upgrade\Lesson71ViewModel.cs" />
+    <Compile Include="Lesson 7\7.1-AutoJoin - Upgrade\Lesson71Wpf.xaml.cs">
+      <DependentUpon>Lesson71Wpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 7\7.2-Copy Textnote\Lesson72CopyTextNoteCmd.cs" />
+    <Compile Include="Lesson 7\7.2-Copy Textnote\Lesson72CopyTextNoteViewModel.cs" />
+    <Compile Include="Lesson 7\7.2-Copy Textnote\Lesson72CopyTextNoteWpf.xaml.cs">
+      <DependentUpon>Lesson72CopyTextNoteWpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 8\Lesson08_BT1\BT1CreateFramingCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_BT1\BT1CreateFramingViewModel.cs" />
+    <Compile Include="Lesson 8\Lesson08_BT1\BT1CreateFramingWpf.xaml.cs">
+      <DependentUpon>BT1CreateFramingWpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 8\Lesson08_BT2\Bt2CreateColumnCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_BT2\Bt2CreateColumnViewModel.cs" />
+    <Compile Include="Lesson 8\Lesson08_BT2\Bt2CreateColumnWpf.xaml.cs">
+      <DependentUpon>Bt2CreateColumnWpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 8\Lesson08_BT3\Bt3CreateFloorCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_BT3\Bt3CreateFloorViewModel.cs" />
+    <Compile Include="Lesson 8\Lesson08_BT3\Bt3CreateFloorWpf.xaml.cs">
+      <DependentUpon>Bt3CreateFloorWpf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 8\Lesson08_CreateNewElements\01.LoadFamily_CreateSymbolCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_CreateNewElements\02.CreateLineBasedElementsCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_CreateNewElements\03.CreateBasePointElementsCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_CreateNewElements\04.CreateLoopElementsCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_CreateNewElements\05.ChangeLocationCmd.cs" />
+    <Compile Include="Lesson 8\Lesson08_CreateNewElements\06.EditElementCmd.cs" />
+    <Compile Include="Lesson 9\9.1_ColumnFromAutoCAD\ColumnData.cs" />
+    <Compile Include="Lesson 9\9.1_ColumnFromAutoCAD\ColumnFromCadCmd.cs" />
+    <Compile Include="Lesson 9\9.1_ColumnFromAutoCAD\ColumnFromCadViewModel.cs" />
+    <Compile Include="Lesson 9\9.1_ColumnFromAutoCAD\ColumnFromCadWindow.xaml.cs">
+      <DependentUpon>ColumnFromCadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 9\9.2_FloorFromAutoCAD\FloorData.cs" />
+    <Compile Include="Lesson 9\9.2_FloorFromAutoCAD\FloorFromCadCmd.cs" />
+    <Compile Include="Lesson 9\9.2_FloorFromAutoCAD\FloorFromCadViewModel.cs" />
+    <Compile Include="Lesson 9\9.2_FloorFromAutoCAD\FloorFromCadWindow.xaml.cs">
+      <DependentUpon>FloorFromCadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\PlanarFaceSelectionFilter.cs" />
+    <Compile Include="Lib\CurveUtils.cs" />
+    <Compile Include="Lib\GeometryUtils.cs" />
+    <Compile Include="Lib\SettingRepository.cs" />
+    <Compile Include="Lib\SlabFoundationFilter.cs" />
+    <Compile Include="Lib\SolidUtils.cs" />
+    <Compile Include="Lib\ExcelUtils.cs" />
+    <Compile Include="Lib\ViewScheduleExtension.cs" />
+    <Compile Include="Lib\ViewScheduleUtils.cs" />
+    <Compile Include="Lib\AlphaBIMConstraint.cs" />
+    <Compile Include="Lib\AlphaComparer.cs" />
+    <Compile Include="Lib\CadUtils.cs" />
+    <Compile Include="Lib\DeleteWarningSuper.cs" />
+    <Compile Include="Lib\DocumentUtils.cs" />
+    <Compile Include="Lib\ElementSelector.cs" />
+    <Compile Include="Lib\EqualityComparer.cs" />
+    <Compile Include="Lib\FamilySymbolUtils.cs" />
+    <Compile Include="Lib\FilterExtension.cs" />
+    <Compile Include="Lib\GeneralUtils.cs" />
+    <Compile Include="Lib\AlphaBIMUnitUtils.cs" />
+    <Compile Include="Lib\AssemblyLoader.cs" />
+    <Compile Include="Lib\IEqualityComparerCategory.cs" />
+    <Compile Include="Lib\ImportInstanceSelectionFilter.cs" />
+    <Compile Include="Lib\ParameterUtils.cs" />
+    <Compile Include="Lib\ViewExtension.cs" />
+    <Compile Include="Lib\ViewUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lesson 8\Lesson08_BT3\Lesson08_BT2\" />
+    <Folder Include="WPF_Lib\CustomControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Lesson 3\Lesson3WPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 6\6.1 - Change height offset\Lesson6WPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 6\6.2 Tranfer Parameter\TransferWpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 6\6.3 - Homework - Thay doi level cua floor\Bai2Wpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 7\7.1-AutoJoin - Upgrade\Lesson71Wpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 7\7.2-Copy Textnote\Lesson72CopyTextNoteWpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 8\Lesson08_BT1\BT1CreateFramingWpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 8\Lesson08_BT2\Bt2CreateColumnWpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 8\Lesson08_BT3\Bt3CreateFloorWpf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 9\9.1_ColumnFromAutoCAD\ColumnFromCadWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 9\9.2_FloorFromAutoCAD\FloorFromCadWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\RadiobuttonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF_Lib\Style\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

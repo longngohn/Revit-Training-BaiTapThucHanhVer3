@@ -1,0 +1,144 @@
+﻿<mah:MetroWindow x:Class="AlphaBIM.Lesson71Wpf"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                 xmlns:local="clr-namespace:AlphaBIM" 
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 mc:Ignorable="d" 
+                 d:DesignHeight="450" d:DesignWidth="900"
+                 Height="300" Width="550"
+                 Title="Auto Join Elements"
+>
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray7}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Button.Border}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Family.Button}"/>
+                <Setter Property="FontSize" Value="{DynamicResource MahApps.Font.Size.Button}"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+                <Setter Property="MinHeight" Value="25"/>
+                <Setter Property="Padding" Value="5,6"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <mah:ClipBorder x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <mah:ClipBorder x:Name="DisabledVisualElement" Background="{DynamicResource MahApps.Brushes.Control.Disabled}" CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <mah:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (mah:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="Border" Value="Khaki"/>
+                                    <Setter Property="BorderBrush" TargetName="Border" Value="{Binding (mah:ControlsHelper.MouseOverBorderBrush), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="Border" Value="{DynamicResource MahApps.Brushes.Gray7}"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="BorderBrush" TargetName="Border" Value="{Binding (mah:ControlsHelper.FocusBorderBrush), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    <Setter Property="BorderThickness" TargetName="Border" Value="{Binding (mah:ControlsHelper.FocusBorderThickness), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                                    <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Upper"/>
+                <Setter Property="mah:ControlsHelper.CornerRadius" Value="3"/>
+                <Setter Property="mah:ControlsHelper.FocusBorderBrush" Value="{DynamicResource MahApps.Brushes.Button.Border.Focus}"/>
+                <Setter Property="mah:ControlsHelper.FocusBorderThickness" Value="2"/>
+                <Setter Property="mah:ControlsHelper.MouseOverBorderBrush" Value="{DynamicResource MahApps.Brushes.Button.Border.MouseOver}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+
+    <DockPanel LastChildFill="True">
+        <TextBlock Text="Chọn đối tượng ưu tiên" DockPanel.Dock="Top"></TextBlock>
+
+       
+        
+        <ComboBox 
+            ItemsSource="{Binding ListDoiTuong}"
+            SelectedItem="{Binding DoiTuongUuTien}"
+            
+            FontSize="15"
+                  Margin="0,4,0,4"
+                  Height="50" DockPanel.Dock="Top"  />
+        <TextBlock Text="Chọn đối tượng bị cắt" DockPanel.Dock="Top"></TextBlock>
+        <ComboBox 
+            ItemsSource="{Binding ListDoiTuong}"
+            SelectedItem="{Binding DoiTuongBiCat}"
+            FontSize="15"
+                  Margin="0,4,0,4"
+                  Height="50"
+                  DockPanel.Dock="Top" />
+
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            
+            <ProgressBar 
+                Height="50"
+                Grid.Row="0"
+                         Grid.Column="0"
+              Name="ProgressWindow" 
+                         
+                         IsIndeterminate="False" 
+                         Foreground="Blue" />
+
+            <TextBlock Text="{Binding Percent, StringFormat={}{0:0}%}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                        Grid.Row="0"
+                         Grid.Column="0"></TextBlock>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <RadioButton  IsChecked="{Binding IsEntireProject}"
+                    Content="Toàn bộ dự án"
+                />
+                <RadioButton IsChecked="{Binding IsCurrentView}"
+                             Content="Màn hình làm việc"
+                />
+                <RadioButton  IsChecked="{Binding IsCurrentSelection}"
+                             Content="Đối tượng được chọn"></RadioButton>
+            </StackPanel>
+            <Button FontSize="12"
+                    Grid.Row="0"
+                    Margin="0,6,5,5"
+                    Background="Goldenrod" Content="Join"
+                    Width="130"
+                    HorizontalAlignment="Right" 
+                    Grid.Column="1" Style="{DynamicResource ButtonStyle1}" Click="Join"/>
+            <Button FontSize="12"
+                    Grid.Row="1"
+                    Margin="0,6,5,5"
+                    Background="Goldenrod" Content="HỦY"
+                    Width="130"
+                    HorizontalAlignment="Right" 
+                    Grid.Column="1" Style="{DynamicResource ButtonStyle1}" Click="Cancel" />
+        </Grid>
+    </DockPanel>
+</mah:MetroWindow>
