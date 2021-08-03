@@ -104,7 +104,7 @@ namespace AlphaBIM
                             .Set(_viewModel.BaseLevel.Id);
 
                         floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM)
-                            .Set(AlphaBimUnitUtils.MmToFeet(AlphaBimUnitUtils.FeetToMm(_viewModel.LevelOffset)));
+                            .Set(AlphaBimUnitUtils.MmToFeet(AlphaBimUnitUtils.MmToFeet(_viewModel.LevelOffset)));
 
                         newFloors.Add(floor.Id);
 

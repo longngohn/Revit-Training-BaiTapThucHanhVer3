@@ -25,11 +25,9 @@ namespace AlphaBIM
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                throw;
             }
 
         }
-
         /// <summary>
         /// Đường bao của Hatch sàn
         /// </summary>
