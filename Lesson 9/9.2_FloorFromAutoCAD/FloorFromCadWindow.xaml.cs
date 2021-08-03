@@ -98,19 +98,19 @@ namespace AlphaBIM
                         failOpt.SetFailuresPreprocessor(warningSuper);
                         tran.SetFailureHandlingOptions(failOpt);
 
-                        foreach (FloorData fData in allFloorData)
-                        {
-                            Floor floor = _viewModel.Doc.Create.NewFloor(fData.AllCurve,floorType,_viewModel.BaseLevel,_viewModel.IsStructural);
 
+                            XYZ normal = XYZ.BasisZ;
 
-                            floor.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_PARAM)
+                            Floor floor = _viewModel.Doc.Create.NewFloor(floorData.AllCurve,floorType,_viewModel.BaseLevel,_viewModel.IsStructural, XYZ.BasisZ);
+
+                            floor.get_Parameter(BuiltInParameter.LEVEL_PARAM)
                                 .Set(_viewModel.BaseLevel.Id);
 
-                            floor.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_OFFSET_PARAM)
-                                .Set(AlphaBimUnitUtils.MmToFeet(_viewModel.LevelOffset));
+                            floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM)
+                                .Set(AlphaBimUnitUtils.MmToFeet(AlphaBimUnitUtils.FeetToMm(_viewModel.LevelOffset)));
 
                             newFloors.Add(floor.Id);
-                        }
+                        
 
 
 

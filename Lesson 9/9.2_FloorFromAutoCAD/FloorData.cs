@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Architecture;
 
 namespace AlphaBIM
 {
@@ -8,23 +11,31 @@ namespace AlphaBIM
     {
         public FloorData(PlanarFace planarFace)
         {
-            
-            EdgeArrayArray edgeLoops = planarFace.EdgeLoops;
 
-            foreach (EdgeArray edgeArray in edgeLoops)
+            try
             {
-                foreach (Edge edge in edgeArray)
+                EdgeArrayArray edgeLoops = planarFace.EdgeLoops;
+
+                foreach (EdgeArray edgeArray in edgeLoops)
                 {
-                    AllCurve.Append(edge.AsCurve());
+                    foreach (Edge edge in edgeArray)
+                    {
+                        Curve newCur = edge.AsCurve();
+                        AllCurve.Append(newCur);
+                    }
                 }
             }
-//a
-          
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+
         }
 
         /// <summary>
-        /// đơn vị: feet
+        /// Đường bao của Hatch sàn
         /// </summary>
-        public CurveArray AllCurve { get; set; }
+        public CurveArray AllCurve { get; set; } = new CurveArray();
     }
 }

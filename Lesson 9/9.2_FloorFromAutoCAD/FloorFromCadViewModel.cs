@@ -55,7 +55,9 @@ namespace AlphaBIM
                 .ToList();
 
             BaseLevel = AllLevel.First();
-           
+            IsStructural = true;
+
+
         }
 
         #region public property
@@ -74,7 +76,8 @@ namespace AlphaBIM
         public List<Level> AllLevel { get; set; }
         public Level BaseLevel { get; set; }
         public double LevelOffset { get; set; }
-        public bool IsStructural { get; set; } = true;
+        public bool IsStructural { get; set; }
+
         #endregion Binding properties
 
         public double Percent
