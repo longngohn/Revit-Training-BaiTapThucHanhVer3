@@ -1,10 +1,10 @@
 
 #region Namespaces
 
-using System;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -33,8 +33,8 @@ namespace AlphaBIM
 
             //Tạo biến level va length cua dầm
 
-            
-       
+
+
 
             Element framing = null;
 
@@ -77,14 +77,14 @@ namespace AlphaBIM
                             return Result.Cancelled;
                         }
 
-                            //Lấy về level và chiều dài
+                        //Lấy về level và chiều dài
 
-                            ElementId levelBeamId = framing
-                                .get_Parameter(BuiltInParameter.INSTANCE_REFERENCE_LEVEL_PARAM)
-                                .AsElementId();
+                        ElementId levelBeamId = framing
+                            .get_Parameter(BuiltInParameter.INSTANCE_REFERENCE_LEVEL_PARAM)
+                            .AsElementId();
 
-                            double beamLength = framing.get_Parameter(BuiltInParameter.INSTANCE_LENGTH_PARAM)
-                                .AsDouble();
+                        double beamLength = framing.get_Parameter(BuiltInParameter.INSTANCE_LENGTH_PARAM)
+                            .AsDouble();
 
                         //Khởi tạo bộ lọc
 
@@ -104,7 +104,7 @@ namespace AlphaBIM
                         //if (beamLength == null) return Result.Cancelled;
 
                         ElementId parameterId = new ElementId(BuiltInParameter.INSTANCE_LENGTH_PARAM);
-                        double valueFilter =  beamLength;
+                        double valueFilter = beamLength;
                         double epsilon = 0.01;
                         FilterRule filterRule2 =
                             ParameterFilterRuleFactory.CreateEqualsRule(parameterId, valueFilter, epsilon);
@@ -132,14 +132,14 @@ namespace AlphaBIM
                         MessageBox.Show(list.Count.ToString());
 
                         uidoc.Selection.SetElementIds(list);
-                        
+
                     }
                     catch (Exception e)
                     {
 
-                        MessageBox.Show("Ket thuc" +e.ToString());
+                        MessageBox.Show("Ket thuc" + e.ToString());
                     }
-                   
+
                 }
                 else
                 {

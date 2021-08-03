@@ -1,20 +1,9 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using MahApps.Metro.Controls;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using Autodesk.Revit.DB;
-using MahApps.Metro.Controls;
 
 namespace AlphaBIM
 {
@@ -63,7 +52,7 @@ namespace AlphaBIM
             List<ElementId> elementSuccess = new List<ElementId>();
             double value = 0;
 
-            foreach(Element foundation in allFoundationToRun)
+            foreach (Element foundation in allFoundationToRun)
             {
                 if (tG.HasStarted())
                 {
@@ -72,7 +61,7 @@ namespace AlphaBIM
                     value = value + 1;
                     _viewModel.Percent = value / ProgressWindow.Maximum * 100;
                     ProgressWindow.Dispatcher.Invoke(() => ProgressWindow.Value = value, DispatcherPriority.Background);
-                    
+
 
                     #endregion
 
@@ -106,7 +95,7 @@ namespace AlphaBIM
                         trans.Commit();
                     }
 
-                    
+
                 }
                 else
                 {
@@ -117,7 +106,7 @@ namespace AlphaBIM
 
 
 
-                    
+
             }
 
             if (tG.HasStarted())

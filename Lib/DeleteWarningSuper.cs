@@ -1,7 +1,6 @@
+using Autodesk.Revit.DB;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-using Autodesk.Revit.DB;
 
 namespace AlphaBIM
 {
@@ -30,7 +29,7 @@ namespace AlphaBIM
             }
             else
             {
-                return  FailureProcessingResult.Continue;
+                return FailureProcessingResult.Continue;
             }
         }
     }

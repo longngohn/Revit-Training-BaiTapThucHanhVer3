@@ -1,10 +1,9 @@
 ﻿#region Namespace
 
-using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.UI.Selection;
 
 #endregion
 
@@ -32,14 +31,14 @@ namespace AlphaBIM
         public Document Doc;
 
         public List<string> AllLevel { get; set; } = new List<string>();
-        public string SelectedLevel{ get; set; }
+        public string SelectedLevel { get; set; }
 
-        
+
         #endregion
 
 
         //Method
-        
+
         private void Initialize()
         {
             List<Element> elements = new FilteredElementCollector(Doc)
@@ -66,13 +65,13 @@ namespace AlphaBIM
                 .OfClass(typeof(Level))
                 .ToElements().ToList();
 
-           
+
             ElementId levelId = null;
 
             List<Element> list = elements.Where(x => x.Name == SelectedLevel).ToList();
             levelId = list.FirstOrDefault().Id;
 
-            foreach (var e in elements) 
+            foreach (var e in elements)
                 if (e.Name == SelectedLevel)
                 {
                     levelId = e.Id;

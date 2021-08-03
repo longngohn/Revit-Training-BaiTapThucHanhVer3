@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AlphaBIM
 {
@@ -29,23 +25,23 @@ namespace AlphaBIM
         }
         private void Initialize()
         {
-             List<Family> listFamily = new FilteredElementCollector(Doc)
-                .OfClass(typeof(Family))
-                .Cast<Family>()
-                .Where(s => s.FamilyCategory.Name.Equals("Structural Columns")|| 
-                            s.FamilyCategory.Name.Equals("Columns")).ToList();
+            List<Family> listFamily = new FilteredElementCollector(Doc)
+               .OfClass(typeof(Family))
+               .Cast<Family>()
+               .Where(s => s.FamilyCategory.Name.Equals("Structural Columns") ||
+                           s.FamilyCategory.Name.Equals("Columns")).ToList();
 
-             foreach (Family f in listFamily)
-             {
-                 ISet<ElementId> familySymbolIds = f.GetFamilySymbolIds();
-                 foreach (ElementId familySymbolId in familySymbolIds)
-                 {
-                     FamilySymbol symbol = Doc.GetElement(familySymbolId) as FamilySymbol;
-                     ListColumnFamily.Add(symbol);
-                 }
-             }
+            foreach (Family f in listFamily)
+            {
+                ISet<ElementId> familySymbolIds = f.GetFamilySymbolIds();
+                foreach (ElementId familySymbolId in familySymbolIds)
+                {
+                    FamilySymbol symbol = Doc.GetElement(familySymbolId) as FamilySymbol;
+                    ListColumnFamily.Add(symbol);
+                }
+            }
 
-             ItemColumnFamily = ListColumnFamily[0];
+            ItemColumnFamily = ListColumnFamily[0];
 
             ListLevel = new FilteredElementCollector(Doc)
                 .OfClass(typeof(Level))
@@ -66,9 +62,9 @@ namespace AlphaBIM
         public Level TopLevel { get; set; }
 
         public double BaseOffset { get; set; }
-        
+
         public double TopOffset { get; set; }
-        
+
 
         #endregion
 
@@ -92,7 +88,7 @@ namespace AlphaBIM
                     symbol, level, StructuralType.Column);
                 instance.get_Parameter(BuiltInParameter.SCHEDULE_BASE_LEVEL_PARAM).Set(BaseLevel.Id);
                 instance.get_Parameter(BuiltInParameter.SCHEDULE_TOP_LEVEL_PARAM).Set(TopLevel.Id);
-                instance.get_Parameter(BuiltInParameter.SCHEDULE_BASE_LEVEL_OFFSET_PARAM).Set(AlphaBimUnitUtils.MmToFeet(BaseOffset));        
+                instance.get_Parameter(BuiltInParameter.SCHEDULE_BASE_LEVEL_OFFSET_PARAM).Set(AlphaBimUnitUtils.MmToFeet(BaseOffset));
                 instance.get_Parameter(BuiltInParameter.SCHEDULE_TOP_LEVEL_OFFSET_PARAM).Set(AlphaBimUnitUtils.MmToFeet(TopOffset));
                 instance.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)
                     .Set("Create Column from RevitAPI");

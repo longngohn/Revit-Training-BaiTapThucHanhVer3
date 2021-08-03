@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
+using System;
 using System.Collections.Generic;
-using Autodesk.Revit.DB;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using Autodesk.Revit.DB.Structure;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AlphaBIM

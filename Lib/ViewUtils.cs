@@ -1,8 +1,8 @@
 ﻿#region Namespaces
 
+using Autodesk.Revit.DB;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.DB;
 using View = Autodesk.Revit.DB.View;
 
 #endregion
@@ -32,7 +32,7 @@ namespace AlphaBIM
         /// <param name="iscurentSelected"></param>
         /// <param name="selectedViews"></param>
         /// <returns></returns>
-        internal static List<ViewType> GetAllViewsType(Document doc, 
+        internal static List<ViewType> GetAllViewsType(Document doc,
             bool iscurentSelected,
             List<View> selectedViews)
         {
@@ -88,7 +88,7 @@ namespace AlphaBIM
             {
                 resultViews
                     = doc.GetAllViews()
-                        .Where(view 
+                        .Where(view
                             => view.ViewType.ToString()
                                 .Equals(viewType.ToString()))
                         .ToList();

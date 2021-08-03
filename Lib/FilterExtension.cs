@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using Autodesk.Revit.DB;
 
 namespace AlphaBIM

@@ -1,10 +1,10 @@
 ﻿#region Namespace
 
-using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System.Linq;
 using Autodesk.Revit.UI.Selection;
+using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 
@@ -20,7 +20,7 @@ namespace AlphaBIM
             Initialize();
         }
 
-      
+
 
         #region Private Property
 
@@ -72,7 +72,7 @@ namespace AlphaBIM
                 //double value = floor.LookupParameter(SelectedSourceParameter).AsDouble();
                 //floor.LookupParameter(SelectedTargetParameter).Set(value.ToString());
                 ElementId idLevel = floor.LookupParameter(SelectedSourceParameter).AsElementId();
-                
+
                 Level level = Doc.GetElement(idLevel) as Level;
                 floor.LookupParameter(SelectedTargetParameter).Set(level.Name);
 

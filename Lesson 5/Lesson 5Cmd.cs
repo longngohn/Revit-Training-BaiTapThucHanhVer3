@@ -4,13 +4,8 @@
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Windows.Forms;
-using Autodesk.Revit.UI.Selection;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
 #endregion
@@ -40,20 +35,20 @@ namespace AlphaBIM
 
             List<Category> categoriesList = new List<Category>();
 
-            categoriesList.Add(Category.GetCategory(doc,BuiltInCategory.OST_StructuralFraming));
+            categoriesList.Add(Category.GetCategory(doc, BuiltInCategory.OST_StructuralFraming));
 
             Transaction tr = new Transaction(doc, "Tao Shared Parameter");
 
             tr.Start();
-            ParameterUtils.CreateSharedParamater(doc, 
-                app, 
-                path, 
-                group, 
-                name, 
+            ParameterUtils.CreateSharedParamater(doc,
+                app,
+                path,
+                group,
+                name,
                 ParameterType.Volume,
-                BuiltInParameterGroup.PG_TEXT, 
+                BuiltInParameterGroup.PG_TEXT,
                 description,
-                categoriesList, 
+                categoriesList,
                 true,
                 true,
                 true
@@ -69,17 +64,17 @@ namespace AlphaBIM
             {
                 Element element = doc.GetElement(eId);
                 Parameter albVolumn = element.LookupParameter("Alb_Volumn");
-                albVolumn.Set(UnitUtils.ConvertToInternalUnits(100,UnitTypeId.CubicMeters));
+                albVolumn.Set(UnitUtils.ConvertToInternalUnits(100, UnitTypeId.CubicMeters));
             };
 
 
             tr.Commit();
 
-      
 
 
 
-            
+
+
 
 
             return Result.Succeeded;

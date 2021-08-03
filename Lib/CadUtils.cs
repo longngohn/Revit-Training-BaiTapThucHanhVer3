@@ -1,9 +1,8 @@
 ﻿#region Namespaces
 
-using System;
+using Autodesk.Revit.DB;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.DB;
 #endregion
 
 namespace AlphaBIM
@@ -115,7 +114,7 @@ namespace AlphaBIM
                         }
                         else // line, polyline,...
                         {
-                            ElementId graphicsStyleId =  geo.GraphicsStyleId;
+                            ElementId graphicsStyleId = geo.GraphicsStyleId;
 
                             GraphicsStyle graphicsStyle =
                                 cadInstance.Document.GetElement(graphicsStyleId)

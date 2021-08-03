@@ -4,9 +4,6 @@
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
-using System.IO;
-using System.Reflection;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
 #endregion
@@ -48,7 +45,7 @@ namespace AlphaBIM
 
                 tranG.Assimilate();
                 return Result.Succeeded;
-                
+
             }
 
         }

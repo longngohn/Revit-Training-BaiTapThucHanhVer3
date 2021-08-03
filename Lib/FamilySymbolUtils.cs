@@ -1,8 +1,8 @@
 ﻿#region Namespaces
+using Autodesk.Revit.DB;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Autodesk.Revit.DB;
 #endregion
 
 namespace AlphaBIM
@@ -66,7 +66,7 @@ namespace AlphaBIM
             if (bParameter == null || hParameter == null)
             {
                 MessageBox.Show("Two parameters dimemsion of column family have to name is"
-                                + bPara +" & "+ hPara);
+                                + bPara + " & " + hPara);
                 return null;
             }
 
@@ -91,11 +91,11 @@ namespace AlphaBIM
             //double sectionY = Math.Round(DLQUnitUtils.FeetToMm(h), 0);
             //string name = string.Concat(sectionX, "x", sectionY);
 
-            string newName = string.Concat(Math.Round(AlphaBimUnitUtils.FeetToMm(b),0).ToString(),
-                "x",Math.Round(AlphaBimUnitUtils.FeetToMm(h),0).ToString());
+            string newName = string.Concat(Math.Round(AlphaBimUnitUtils.FeetToMm(b), 0).ToString(),
+                "x", Math.Round(AlphaBimUnitUtils.FeetToMm(h), 0).ToString());
 
             // 300x600
-            
+
             //if (name.Equals("0x0")) return null;
             //if (name.Equals("0x0") || Math.Abs(sectionX) < 0.01 ||
             //    Math.Abs(sectionY) < 0.01) return null;

@@ -1,8 +1,8 @@
 ﻿#region Namespaces
 
+using Autodesk.Revit.DB;
 using System;
 using System.Collections.Generic;
-using Autodesk.Revit.DB;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using Binding = Autodesk.Revit.DB.Binding;
 using MessageBox = System.Windows.MessageBox;
@@ -224,7 +224,7 @@ namespace AlphaBIM
             {
                 try
                 {
-                    ExternalDefinitionCreationOptions opt  = new ExternalDefinitionCreationOptions(nameOfParameter, defType);
+                    ExternalDefinitionCreationOptions opt = new ExternalDefinitionCreationOptions(nameOfParameter, defType);
 
                     // True if the parameter is visible to the user, 
                     // false if it is hidden and accessible only via the API. The default is true. 

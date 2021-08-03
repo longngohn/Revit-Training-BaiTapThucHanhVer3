@@ -1,22 +1,16 @@
 ﻿
 #region Namespaces
 
-using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-using Application = Autodesk.Revit.ApplicationServices.Application;
 
 #endregion
 
 namespace AlphaBIM
 {
-    
+
     public class Lesson72CopyTextNoteViewModel : ViewModelBase
     {
         internal UIDocument UiDoc;
@@ -30,7 +24,7 @@ namespace AlphaBIM
             Doc = UiDoc.Document;
             //Khởi tạo data cho WPF
             Initialize();
-            
+
 
         }
 

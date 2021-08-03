@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 
 namespace AlphaBIM
@@ -31,10 +29,10 @@ namespace AlphaBIM
         }
         private void Initialize()
         {
-           ListFramingFamily = new FilteredElementCollector(Doc)
-                .OfClass(typeof(Family))
-                .Cast<Family>()
-                .Where(s => s.FamilyCategory.Name.Equals("Structural Framing")).ToList();
+            ListFramingFamily = new FilteredElementCollector(Doc)
+                 .OfClass(typeof(Family))
+                 .Cast<Family>()
+                 .Where(s => s.FamilyCategory.Name.Equals("Structural Framing")).ToList();
 
             //foreach (Family fl in families)
             //{
@@ -44,7 +42,7 @@ namespace AlphaBIM
             //    Category eCategory = e.Category;
             //    if (eCategory.Id.IntegerValue == (int) BuiltInCategory.OST_StructuralFraming)
             //        ListFramingFamily.Add(fl);
-                
+
             //}
 
             ItemFramingFamily = ListFramingFamily[0];
@@ -65,11 +63,11 @@ namespace AlphaBIM
         public Level ItemReferenceLevel { get; set; }
 
         public double b { get; set; }
-      
+
 
         public double h { get; set; }
 
-        public  double z { get; set; }
+        public double z { get; set; }
 
         #endregion
 
@@ -89,87 +87,87 @@ namespace AlphaBIM
                 .Where(s => s.Family.Name.Equals(ItemFramingFamily.Name))
                 .ToList();
 
-                using (TransactionGroup tAll = new TransactionGroup(Doc))
+            using (TransactionGroup tAll = new TransactionGroup(Doc))
+            {
+                tAll.Start("Create new Framing Type");
+
+                using (Transaction tSet = new Transaction(Doc))
                 {
-                    tAll.Start("Create new Framing Type");
+                    tSet.Start("Create Family Type");
 
-                    using (Transaction tSet = new Transaction(Doc))
+
+
+                    //Tìm Family giống để gán vào Element Type
+                    foreach (FamilySymbol familySymbol1 in familySymbols)
                     {
-                        tSet.Start("Create Family Type");
-                    
-
-                       
-                            //Tìm Family giống để gán vào Element Type
-                            foreach (FamilySymbol familySymbol1 in familySymbols)
-                            {
-                                if (familySymbol1.Name.Equals(symbolBeamName))
-                                {
-
-                                    s1 = familySymbol1;
-                                    break;
-                                }
-                            }
-
-                            if (familySymbols[0].LookupParameter("b") != null)
-                            {
-                                s1 = familySymbols[0].Duplicate(symbolBeamName);
-                                s1.LookupParameter("b").Set(AlphaBimUnitUtils.MmToFeet(b));
-                                s1.LookupParameter("h").Set(AlphaBimUnitUtils.MmToFeet(h));
-                            }
-                      
-                          
-                   
-                        tSet.Commit();
-                    }
-
-                    FamilySymbol familySymbol = new FilteredElementCollector(Doc).OfClass(typeof(FamilySymbol))
-                        .Cast<FamilySymbol>()
-                        .Where(s => s.Family.Name.Equals(ItemFramingFamily.Name))
-                        .FirstOrDefault(s => s.Name.Equals(symbolBeamName));
-
-                    if (familySymbol != null)
-                    {
-                        if (!familySymbol.IsActive) familySymbol.Activate();
-
-                        Level level = ItemReferenceLevel;
-
-                        XYZ pt1 = UiDoc.Selection.PickPoint("Pick start point...");
-                        XYZ pt2 = UiDoc.Selection.PickPoint("Pick end point...");
-
-                        double levelElevation = level.Elevation;
-                        XYZ startPoint = new XYZ(pt1.X, pt1.Y, levelElevation);
-                        XYZ endPoint = new XYZ(pt2.X, pt2.Y, levelElevation);
-                        Line framingLocation = Line.CreateBound(startPoint, endPoint);
-
-                        using (Transaction t = new Transaction(Doc))
+                        if (familySymbol1.Name.Equals(symbolBeamName))
                         {
-                            t.Start("Create Framing");
 
-                            FamilyInstance instance = Doc.Create.NewFamilyInstance(framingLocation, familySymbol, level,
-                                StructuralType.Beam);
-
-                            instance.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)
-                                .Set("Create Framing from Automate");
-
-                            instance.get_Parameter(BuiltInParameter.Z_OFFSET_VALUE).Set(AlphaBimUnitUtils.MmToFeet(z));
-
-                            t.Commit();
+                            s1 = familySymbol1;
+                            break;
                         }
-
-                        if (tAll.HasStarted()) tAll.Commit();
                     }
 
-                    if (tAll.HasStarted())
+                    if (familySymbols[0].LookupParameter("b") != null)
                     {
-                        tAll.RollBack();
-                        MessageBox.Show("Family này không có biến B và H, vui lòng chọn lại family!");
+                        s1 = familySymbols[0].Duplicate(symbolBeamName);
+                        s1.LookupParameter("b").Set(AlphaBimUnitUtils.MmToFeet(b));
+                        s1.LookupParameter("h").Set(AlphaBimUnitUtils.MmToFeet(h));
                     }
-                    
+
+
+
+                    tSet.Commit();
                 }
 
-                //Lay ve Family Symbol equal symbolBeamName
+                FamilySymbol familySymbol = new FilteredElementCollector(Doc).OfClass(typeof(FamilySymbol))
+                    .Cast<FamilySymbol>()
+                    .Where(s => s.Family.Name.Equals(ItemFramingFamily.Name))
+                    .FirstOrDefault(s => s.Name.Equals(symbolBeamName));
 
-              
+                if (familySymbol != null)
+                {
+                    if (!familySymbol.IsActive) familySymbol.Activate();
+
+                    Level level = ItemReferenceLevel;
+
+                    XYZ pt1 = UiDoc.Selection.PickPoint("Pick start point...");
+                    XYZ pt2 = UiDoc.Selection.PickPoint("Pick end point...");
+
+                    double levelElevation = level.Elevation;
+                    XYZ startPoint = new XYZ(pt1.X, pt1.Y, levelElevation);
+                    XYZ endPoint = new XYZ(pt2.X, pt2.Y, levelElevation);
+                    Line framingLocation = Line.CreateBound(startPoint, endPoint);
+
+                    using (Transaction t = new Transaction(Doc))
+                    {
+                        t.Start("Create Framing");
+
+                        FamilyInstance instance = Doc.Create.NewFamilyInstance(framingLocation, familySymbol, level,
+                            StructuralType.Beam);
+
+                        instance.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)
+                            .Set("Create Framing from Automate");
+
+                        instance.get_Parameter(BuiltInParameter.Z_OFFSET_VALUE).Set(AlphaBimUnitUtils.MmToFeet(z));
+
+                        t.Commit();
+                    }
+
+                    if (tAll.HasStarted()) tAll.Commit();
+                }
+
+                if (tAll.HasStarted())
+                {
+                    tAll.RollBack();
+                    MessageBox.Show("Family này không có biến B và H, vui lòng chọn lại family!");
+                }
+
+            }
+
+            //Lay ve Family Symbol equal symbolBeamName
+
+
         }
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using System;
 using System.Collections.Generic;
-using Autodesk.Revit.DB;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using Autodesk.Revit.DB.Structure;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AlphaBIM
@@ -84,8 +81,8 @@ namespace AlphaBIM
 
                     #region Viết Code ở đây
 
-                    FloorType floorType  = _viewModel.SelectedFloorType;
-                           
+                    FloorType floorType = _viewModel.SelectedFloorType;
+
 
                     if (floorType == null) continue;
 
@@ -99,18 +96,18 @@ namespace AlphaBIM
                         tran.SetFailureHandlingOptions(failOpt);
 
 
-                            XYZ normal = XYZ.BasisZ;
+                        XYZ normal = XYZ.BasisZ;
 
-                            Floor floor = _viewModel.Doc.Create.NewFloor(floorData.AllCurve,floorType,_viewModel.BaseLevel,_viewModel.IsStructural, XYZ.BasisZ);
+                        Floor floor = _viewModel.Doc.Create.NewFloor(floorData.AllCurve, floorType, _viewModel.BaseLevel, _viewModel.IsStructural, XYZ.BasisZ);
 
-                            floor.get_Parameter(BuiltInParameter.LEVEL_PARAM)
-                                .Set(_viewModel.BaseLevel.Id);
+                        floor.get_Parameter(BuiltInParameter.LEVEL_PARAM)
+                            .Set(_viewModel.BaseLevel.Id);
 
-                            floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM)
-                                .Set(AlphaBimUnitUtils.MmToFeet(AlphaBimUnitUtils.FeetToMm(_viewModel.LevelOffset)));
+                        floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM)
+                            .Set(AlphaBimUnitUtils.MmToFeet(AlphaBimUnitUtils.FeetToMm(_viewModel.LevelOffset)));
 
-                            newFloors.Add(floor.Id);
-                        
+                        newFloors.Add(floor.Id);
+
 
 
 

@@ -1,8 +1,7 @@
 ﻿#region Namespaces
+using Autodesk.Revit.DB;
 using System;
 using System.Collections.Generic;
-using Autodesk.Revit.DB;
-using Quadrant = System.Int32;
 #endregion
 
 namespace AlphaBIM

@@ -1,13 +1,12 @@
 
 #region Namespaces
 
-using System;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System.Linq;
-using Application = Autodesk.Revit.ApplicationServices.Application;
 using Autodesk.Revit.UI.Selection;
+using System;
+using Application = Autodesk.Revit.ApplicationServices.Application;
 #endregion
 
 namespace AlphaBIM

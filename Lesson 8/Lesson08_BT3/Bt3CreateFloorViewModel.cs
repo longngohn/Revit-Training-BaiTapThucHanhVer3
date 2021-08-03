@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Structure;
-using Autodesk.Revit.UI;
 
 namespace AlphaBIM
 {
@@ -37,7 +32,7 @@ namespace AlphaBIM
                 .Cast<FloorType>()
                 .ToList();
             ItemFloorType = ListFloorTypes[0];
-            
+
 
             ListLevel = new FilteredElementCollector(Doc)
                 .OfClass(typeof(Level))
@@ -47,7 +42,7 @@ namespace AlphaBIM
             ListLevel = ListLevel.OrderBy(l => l.Elevation).ToList();
 
             FloorLevel = ListLevel.First();
-           
+
         }
 
         #region Binding Properties
@@ -95,7 +90,7 @@ namespace AlphaBIM
 
             // Get Floor Type
             FloorType floorType = ItemFloorType;
-            
+
 
             Level level = FloorLevel;
             XYZ normal = XYZ.BasisZ;
@@ -103,7 +98,7 @@ namespace AlphaBIM
             using (Transaction tran = new Transaction(Doc))
             {
                 tran.Start("Create Floor");
-               
+
 
                 Floor instance = Doc.Create.NewFloor(profile,
                     floorType, level, true, normal);
@@ -113,7 +108,7 @@ namespace AlphaBIM
                 instance.get_Parameter(BuiltInParameter.FLOOR_PARAM_IS_STRUCTURAL).Set(IsChecked.ToString());
                 instance.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)
                     .Set("Create Floor from Revit API");
-             
+
                 tran.Commit();
             }
 

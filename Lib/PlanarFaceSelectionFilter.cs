@@ -35,7 +35,7 @@ namespace AlphaBIM
             // Tham khảo: http://bit.ly/2oa9NcF
 
             Element e = _doc.GetElement(reference);
-            GeometryObject geoObject = 
+            GeometryObject geoObject =
                 e.GetGeometryObjectFromReference(reference);
 
             return geoObject is PlanarFace;

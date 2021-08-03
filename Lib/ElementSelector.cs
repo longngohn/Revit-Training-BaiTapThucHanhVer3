@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.DB;
 
 namespace AlphaBIM
 {
@@ -19,15 +18,15 @@ namespace AlphaBIM
         {
             BoundingBoxXYZ box = element.get_BoundingBox(doc.ActiveView);
 
-            XYZ minPoint = new XYZ(box.Min.X - AlphaBimUnitUtils.MmToFeet(50), 
+            XYZ minPoint = new XYZ(box.Min.X - AlphaBimUnitUtils.MmToFeet(50),
                 box.Min.Y - AlphaBimUnitUtils.MmToFeet(50), 0);
 
-            XYZ maxPoint = new XYZ(box.Max.X + AlphaBimUnitUtils.MmToFeet(50), 
+            XYZ maxPoint = new XYZ(box.Max.X + AlphaBimUnitUtils.MmToFeet(50),
                 box.Max.Y + AlphaBimUnitUtils.MmToFeet(50), 0);
 
             Outline outlineElement = new Outline(minPoint, maxPoint);
 
-            List<TextNote> allTextNote 
+            List<TextNote> allTextNote
                 = new FilteredElementCollector(doc, doc.ActiveView.Id)
                 .OfCategory(BuiltInCategory.OST_TextNotes)
                 .Cast<TextNote>()

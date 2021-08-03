@@ -1,10 +1,10 @@
+using Autodesk.Revit.DB;
 using System;
 using System.Collections.Generic;
-using Autodesk.Revit.DB;
 
 namespace AlphaBIM
 {
-    public class AlphaComparer : IComparer<View>, 
+    public class AlphaComparer : IComparer<View>,
         IComparer<ViewType>
     {
         public int Compare(View x, View y)

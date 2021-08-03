@@ -4,9 +4,6 @@
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
-using System.IO;
-using System.Reflection;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
 #endregion
@@ -16,7 +13,7 @@ namespace AlphaBIM
     [Transaction(TransactionMode.Manual)]
     public class Lesson03TestCmd : IExternalCommand
     {
-       
+
         public Result Execute(ExternalCommandData commandData,
             ref string message, ElementSet elements)
         {
@@ -37,6 +34,6 @@ namespace AlphaBIM
 
             return Result.Succeeded;
         }
-        
+
     }
 }

@@ -1,22 +1,15 @@
 ﻿
 #region Namespaces
 
-using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-using Application = Autodesk.Revit.ApplicationServices.Application;
 
 #endregion
 
 namespace AlphaBIM
 {
-    
+
     public class Lesson71ViewModel : ViewModelBase
     {
         internal UIDocument UiDoc;
@@ -27,13 +20,13 @@ namespace AlphaBIM
             UiDoc = uiDoc;
             Doc = UiDoc.Document;
             Initialize();
-            
+
 
         }
 
         private void Initialize()
         {
-            
+
 
             ListDoiTuong.Add("DẦM");
             ListDoiTuong.Add("SÀN");
@@ -69,6 +62,6 @@ namespace AlphaBIM
             }
         }
 
-        
+
     }
 }

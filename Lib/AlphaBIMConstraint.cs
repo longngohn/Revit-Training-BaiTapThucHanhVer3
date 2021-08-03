@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Autodesk.Revit.ApplicationServices;
+using System;
 using System.IO;
-using System.Windows.Media.Imaging;
-using Autodesk.Revit.ApplicationServices;
 
 namespace AlphaBIM
 {
@@ -81,7 +80,7 @@ namespace AlphaBIM
 
             SharedParamsPath = Path.Combine(SettingFolder, "AlphaBIM_SharedParameter.txt");
             HelperPath = Path.Combine(HelpFolder, "Alpha BIM Guideline.pdf");
-            
+
             MainDllFileName = "AlphaBIM_RevitAPI_Training.dll";
 
             if (a != null)
