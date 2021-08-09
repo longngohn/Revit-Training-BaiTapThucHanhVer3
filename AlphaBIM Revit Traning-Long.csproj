@@ -40,23 +40,24 @@
       <HintPath>dllReference\AlphaBIMWPF.dll</HintPath>
     </Reference>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dllReference\ControlzEx.dll</HintPath>
+      <HintPath>packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dllReference\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="MahApps.Metro.ALB">
-      <HintPath>dllReference\MahApps.Metro.ALB.dll</HintPath>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>packages\MahApps.Metro.2.4.7\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro.IconPacks">
       <HintPath>dllReference\MahApps.Metro.IconPacks.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors.ALB">
+    <Reference Include="MaterialDesignColors.ALB, Version=1.0.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dllReference\MaterialDesignColors.ALB.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf.ALB">
+    <Reference Include="MaterialDesignThemes.Wpf.ALB, Version=1.0.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dllReference\MaterialDesignThemes.Wpf.ALB.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -70,8 +71,8 @@
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
       <HintPath>dllReference\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xaml.Behaviors">
-      <HintPath>dllReference\Microsoft.Xaml.Behaviors.dll</HintPath>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -88,8 +89,12 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>dllReference\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -103,6 +108,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lesson 10\10.1_PurgeView\PurgeViewCmd.cs" />
+    <Compile Include="Lesson 10\10.1_PurgeView\PurgeViewModel.cs" />
+    <Compile Include="Lesson 10\10.1_PurgeView\PurgeViewWindow.xaml.cs">
+      <DependentUpon>PurgeViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 10\10.2_Filters\FiltersCmd.cs" />
+    <Compile Include="Lesson 10\10.3.FilterSelector\FilterSelectorCmd.cs" />
+    <Compile Include="Lesson 10\10.3.FilterSelector\FilterSelectorViewModel.cs" />
+    <Compile Include="Lesson 10\10.3.FilterSelector\FilterSelectorWindow.xaml.cs">
+      <DependentUpon>FilterSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 11\Model\FramingSelectionFilter.cs" />
+    <Compile Include="Lesson 11\Model\InforFamilyInstance.cs" />
+    <Compile Include="Lesson 11\Lesson11RebarSingleBeamCmd.cs" />
+    <Compile Include="Lesson 11\RebarSingleBeamViewModel.cs" />
+    <Compile Include="Lesson 11\RebarSingleBeamWindow.xaml.cs" />
     <Compile Include="Lesson 2\Lesson2Cmd.cs" />
     <Compile Include="Lesson 2\PTBH.cs" />
     <Compile Include="Lesson 3\Lesson 03TestCmd.cs" />
@@ -204,6 +225,18 @@
     <Folder Include="WPF_Lib\CustomControls\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Lesson 10\10.1_PurgeView\PurgeViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 10\10.3.FilterSelector\FilterSelectorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 11\RebarSingleBeamWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Lesson 3\Lesson3WPF.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -276,6 +309,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -151,38 +151,38 @@ namespace AlphaBIM
 
         #region Copy Title bar
 
-        private void OpenWebSite(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Process.Start("https://alphabimvn.com/vi");
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //private void OpenWebSite(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Process.Start("https://alphabimvn.com/vi");
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
 
-        private void CustomDevelopment(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Process.Start("http://bit.ly/3bNeJek");
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //private void CustomDevelopment(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Process.Start("http://bit.ly/3bNeJek");
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
 
-        private void Feedback(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Process.Start("mailto:contact@alphabimvn.com");
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //private void Feedback(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Process.Start("mailto:contact@alphabimvn.com");
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
 
         #endregion Copy Title bar
 

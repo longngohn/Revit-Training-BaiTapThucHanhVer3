@@ -12,7 +12,7 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
 
-                 Title= "Alpha BIM | Revit API Training | Floor From AutoCAD"
+                 Title= "Revit API Training | Floor From AutoCAD"
 
                  ResizeMode="NoResize"
                  ShowInTaskbar="True"
@@ -42,7 +42,7 @@
         </ResourceDictionary>
     </mah:MetroWindow.Resources>
 
-    <mah:MetroWindow.LeftWindowCommands>
+    <!--<mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
             <Button Click="OpenWebSite">
                 <materialDesign:PackIcon Kind="HomeCircle"
@@ -79,7 +79,7 @@
 
         </mah:WindowCommands>
 
-    </mah:MetroWindow.RightWindowCommands>
+    </mah:MetroWindow.RightWindowCommands>-->
 
     <DockPanel LastChildFill="False">
 
