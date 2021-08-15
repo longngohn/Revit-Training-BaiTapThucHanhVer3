@@ -9,7 +9,7 @@
                  xmlns:alphaBim="clr-namespace:AlphaBIM"
                  d:DataContext="{d:DesignInstance alphaBim:RebarColumnViewModel}"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                 Title="Alpha BIM | Revit API Training | Rebar for Single Beam"
+                 Title="Alpha BIM | Revit API Training | Rebar for Column"
                  ResizeMode="CanResize"
                  ShowInTaskbar="True"
                  WindowStartupLocation="CenterScreen"
@@ -54,11 +54,7 @@
                     Content="OK"
                     Width="100"
                     Click="btnOK_Click"/>
-            <CheckBox
-                IsChecked="{Binding IsL2HasGirderReinforcement}"
-                DockPanel.Dock="Left"
-                Content="Thêm lớp gia cường bụng dầm tại đoạn phân bố L2"
-                ></CheckBox>
+           
                
 
         </DockPanel>

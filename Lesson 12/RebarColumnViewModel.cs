@@ -30,9 +30,7 @@ namespace AlphaBIM
                 UiDoc.Selection.PickObject(ObjectType.Element, new ColumnSelectionFilter(), "Select A Column");
             Element element = Doc.GetElement(reference);
             InforFamilyInstance = new InforFamilyInstance(element as FamilyInstance);
-            //MessageBox.Show(AlphaBimUnitUtils.FeetToMm(InforBeam.ChieuDai) + "\n" +
-            //                AlphaBimUnitUtils.FeetToMm(InforBeam.ChieuRong) + "\n" +
-            //                AlphaBimUnitUtils.FeetToMm(InforBeam.ChieuCao));
+            
 
 
             // Khởi tạo data cho WPF | Initialize data for WPF
@@ -71,7 +69,7 @@ namespace AlphaBIM
             ScaleS1Stirrup = ScaleS3Stirrup = 100;
             ScaleS2Stirrup = 200;
 
-            IsL2HasGirderReinforcement = true;
+            
         }
 
         #region public property
@@ -133,7 +131,7 @@ namespace AlphaBIM
         public double ScaleS2Stirrup { get; set; }
         public double ScaleS3Stirrup { get; set; }
 
-        public bool IsL2HasGirderReinforcement { get; set; }
+   
 
         #endregion Binding properties
 
@@ -366,7 +364,6 @@ namespace AlphaBIM
                 );
 
                 #endregion
-
 
                 #region THEP CANH NGAN 2
 
