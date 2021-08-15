@@ -13,7 +13,7 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 namespace AlphaBIM
 {
     [Transaction(TransactionMode.Manual)]
-    public class Lesson11RebarSingleBeamCmd : IExternalCommand
+    public class Lesson12RebarColumnCmd : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData,
             ref string message, ElementSet elements)
@@ -33,11 +33,11 @@ namespace AlphaBIM
             {
                 tranG.Start("Rebar Single Beam");
 
-                RebarSingleBeamViewModel viewModel
-                    = new RebarSingleBeamViewModel(uidoc);
+                RebarColumnViewModel viewModel
+                    = new RebarColumnViewModel(uidoc);
 
-                RebarSingleBeamWindow window
-                    = new RebarSingleBeamWindow(viewModel);
+                RebarColumnWindow window
+                    = new RebarColumnWindow(viewModel);
 
                 if (window.ShowDialog() == false) return Result.Cancelled;
 

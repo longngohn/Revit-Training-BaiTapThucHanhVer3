@@ -12,7 +12,7 @@ namespace AlphaBIM
             Beam = beam;
             Doc = beam.Document;
 
-            // Xác định 3 hướng của dầm
+            // Xác định 3 hướng của cột
             BasisX = beam.HandOrientation;
             BasisY = beam.FacingOrientation;
             BasisZ = BasisX.CrossProduct(BasisY);
@@ -70,10 +70,23 @@ namespace AlphaBIM
                 planarFaceBottom.Origin,
                 planarFaceTop.Origin);
 
+            if (chieuDai<chieuRong)
+            {
+                XYZ basisX = BasisX;
+                BasisX = BasisY;
+                BasisY = basisX;
 
-            ChieuRong = chieuRong;
-            ChieuDai = chieuDai;
-            ChieuCao = chieuCao;
+                ChieuRong = chieuDai;
+                ChieuDai = chieuRong;
+                ChieuCao = chieuCao;
+            }
+            else
+            {
+                ChieuRong = chieuRong;
+                ChieuDai = chieuDai;
+                ChieuCao = chieuCao;
+            }
+           
             Center = solid.ComputeCentroid();
 
             DiemTraiDuoi = Center

@@ -74,6 +74,7 @@ namespace AlphaBIM
             ScaleS2Stirrup = 200;
 
             IsL2HasGirderReinforcement = true;
+          
 
         }
 
@@ -116,9 +117,12 @@ namespace AlphaBIM
         internal InforFamilyInstance InforBeam { get; set; }
 
 
+        
+
         // Các method khác viết ở dưới đây | Other methods written below
         internal void ButtonOk()
         {
+          
             using (Transaction trans = new Transaction(Doc, "Tạo thép dầm"))
             {
                 trans.Start();
@@ -145,6 +149,7 @@ namespace AlphaBIM
                                + basisX * coverOther
                                + basisY * coverOther
                                + basisZ * coverBottom;
+             
 
                 XYZ xScaleToBox = basisY * (chieuRong - coverOther * 2);
                 XYZ yScaleToBox = basisZ * (chieuCao - coverBottom - coverTop);

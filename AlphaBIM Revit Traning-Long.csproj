@@ -119,11 +119,15 @@
     <Compile Include="Lesson 10\10.3.FilterSelector\FilterSelectorWindow.xaml.cs">
       <DependentUpon>FilterSelectorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lesson 11\Model\FramingSelectionFilter.cs" />
-    <Compile Include="Lesson 11\Model\InforFamilyInstance.cs" />
+    <Compile Include="Lesson 12\Model\ColumnSelectionFilter.cs" />
+    <Compile Include="Lib\InforFamilyInstance.cs" />
     <Compile Include="Lesson 11\Lesson11RebarSingleBeamCmd.cs" />
     <Compile Include="Lesson 11\RebarSingleBeamViewModel.cs" />
     <Compile Include="Lesson 11\RebarSingleBeamWindow.xaml.cs" />
+    <Compile Include="Lesson 12\Lesson12RebarColumnCmd.cs" />
+    <Compile Include="Lesson 11\Model\FramingSelectionFilter.cs" />
+    <Compile Include="Lesson 12\RebarColumnViewModel.cs" />
+    <Compile Include="Lesson 12\RebarColumnWindow.xaml.cs" />
     <Compile Include="Lesson 2\Lesson2Cmd.cs" />
     <Compile Include="Lesson 2\PTBH.cs" />
     <Compile Include="Lesson 3\Lesson 03TestCmd.cs" />
@@ -234,6 +238,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Lesson 11\RebarSingleBeamWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 12\RebarColumnWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
