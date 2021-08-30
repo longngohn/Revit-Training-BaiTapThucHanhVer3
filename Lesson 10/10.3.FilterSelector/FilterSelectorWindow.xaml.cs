@@ -92,6 +92,7 @@ namespace AlphaBIM
             }
         }
 
+       
         private void MouseDown(object sender, MouseButtonEventArgs e)
         {
             FilterExtension currentItem = DataGridRuleFilters.CurrentItem as FilterExtension;

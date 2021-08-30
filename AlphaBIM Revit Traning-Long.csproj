@@ -120,6 +120,15 @@
       <DependentUpon>FilterSelectorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lesson 12\Model\ColumnSelectionFilter.cs" />
+    <Compile Include="Lesson 13\FormworkAreaCmd.cs" />
+    <Compile Include="Lesson 13\FormworkAreaViewModel.cs" />
+    <Compile Include="Lesson 13\FormworkAreaWindow.xaml.cs">
+      <DependentUpon>FormworkAreaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lesson 13\Model\BeamColumnSelectionFilter.cs" />
+    <Compile Include="Lesson 13\Model\CreateDirecShapeForFace.cs" />
+    <Compile Include="Lesson 13\Model\CreateShareParameterFormworkArea.cs" />
+    <Compile Include="Lesson 13\Model\Interactor.cs" />
     <Compile Include="Lib\InforFamilyInstance.cs" />
     <Compile Include="Lesson 11\Lesson11RebarSingleBeamCmd.cs" />
     <Compile Include="Lesson 11\RebarSingleBeamViewModel.cs" />
@@ -242,6 +251,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Lesson 12\RebarColumnWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lesson 13\FormworkAreaWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
