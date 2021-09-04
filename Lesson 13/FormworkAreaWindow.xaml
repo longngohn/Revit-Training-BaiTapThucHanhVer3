@@ -18,7 +18,7 @@
                  Topmost="False"
                >
 
-    <!--d:DataContext="{d:DesignInstance alphaBim1:FormworkAreaViewModel}"-->
+   
 
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
@@ -38,42 +38,6 @@
         </ResourceDictionary>
     </mah:MetroWindow.Resources>
 
-    <mah:MetroWindow.LeftWindowCommands>
-        <mah:WindowCommands>
-            <Button Click="OpenWebSite">
-                <materialDesign:PackIcon Kind="HomeCircle"
-                                         Width="22"
-                                         Height="22" />
-            </Button>
-            <Button Click="CustomDevelopment">
-                <materialDesign:PackIcon Kind="DeveloperBoard"
-                                         Width="22"
-                                         Height="22" />
-
-            </Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.LeftWindowCommands>
-
-    <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands>
-            <Button Click="Feedback">
-                <Button.ContentTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="FaceAgent"
-                                                     Width="22"
-                                                     Height="22"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Margin="4 0 0 0"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </Button.ContentTemplate>
-            </Button>
-        </mah:WindowCommands>
-
-    </mah:MetroWindow.RightWindowCommands>
 
     <StackPanel x:Name="DockPanel">
 

@@ -21,12 +21,16 @@ namespace AlphaBIM
             List<Category> categories = new List<Category>();
             categories.Add(Category.GetCategory(doc, BuiltInCategory.OST_StructuralFraming));
             categories.Add(Category.GetCategory(doc, BuiltInCategory.OST_StructuralColumns));
+            categories.Add(Category.GetCategory(doc, BuiltInCategory.OST_Walls));
 
             List<Category> categorieBeam = new List<Category>();
             categorieBeam.Add(Category.GetCategory(doc, BuiltInCategory.OST_StructuralFraming));
 
             List<Category> categorieColumn = new List<Category>();
             categorieColumn.Add(Category.GetCategory(doc, BuiltInCategory.OST_StructuralColumns));
+
+            List<Category> categorieWall = new List<Category>();
+            categorieWall.Add(Category.GetCategory(doc, BuiltInCategory.OST_Walls));
 
 
             Transaction t = new Transaction(doc, "Tạo Shared Parameter");
@@ -136,6 +140,58 @@ namespace AlphaBIM
 
             #endregion
 
+            #region Para của tường
+
+            ParameterUtils.CreateSharedParamater(
+                doc,
+                app,
+                path,
+                group,
+                NameFwWallTotal,
+                ParameterType.Area,
+                BuiltInParameterGroup.PG_STRUCTURAL,
+                DescriptionFwWallTotal,
+                categorieWall,
+                true);
+
+            ParameterUtils.CreateSharedParamater(
+                doc,
+                app,
+                path,
+                group,
+                NameFwWallSubBeam,
+                ParameterType.Area,
+                BuiltInParameterGroup.PG_STRUCTURAL,
+                DescriptionFwWallSubBeam,
+                categorieWall,
+                true);
+
+            ParameterUtils.CreateSharedParamater(
+                doc,
+                app,
+                path,
+                group,
+                NameFwWallSubColumn,
+                ParameterType.Area,
+                BuiltInParameterGroup.PG_STRUCTURAL,
+                DescriptionFwWallSubColumn,
+                categorieWall,
+                true);
+
+            ParameterUtils.CreateSharedParamater(
+                doc,
+                app,
+                path,
+                group,
+                NameFwWallSubWall,
+                ParameterType.Area,
+                BuiltInParameterGroup.PG_STRUCTURAL,
+                DescriptionFwWallSubWall,
+                categorieWall,
+                true);
+
+            #endregion
+
 
             t.Commit();
         }
@@ -159,5 +215,15 @@ namespace AlphaBIM
         internal static string DescriptionFwColumnSubBeam { get; set; } = "Diện tích tiếp xúc với dầm";
         internal static string NameFwColumnSubColumn{ get; set; } = "FW.Column.SubCol";
         internal static string DescriptionFwColumnSubColumn { get; set; } = "Diện tích tiếp xúc với cột";
+
+
+        internal static string NameFwWallTotal { get; set; } = "FW.Column.Total";
+        internal static string DescriptionFwWallTotal { get; set; } = "Tổng diện tích ván khuôn";
+        internal static string NameFwWallSubColumn { get; set; } = "FW.Wall.SubCol";
+        internal static string DescriptionFwWallSubColumn { get; set; } = "Diện tích tiếp xúc với cột";
+        internal static string NameFwWallSubBeam { get; set; } = "FW.Wall.SubBeam";
+        internal static string DescriptionFwWallSubBeam { get; set; } = "Diện tích tiếp xúc với dầm";
+        internal static string NameFwWallSubWall { get; set; } = "FW.Wall.SubWall";
+        internal static string DescriptionFwWallSubWall { get; set; } = "Diện tích tiếp xúc với tường";
     }
 }

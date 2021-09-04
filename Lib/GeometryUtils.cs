@@ -41,13 +41,21 @@ namespace AlphaBIM
             return faces;
         }
 
-        public static double CalAreaNotTop(this List<Face> faces)
+        public static double CalAreaNotTop(this List<Face> faces, Document doc = null)
         {
             double result = 0;
             faces = faces.Where(x => !x.GetNormal().IsAlmostEqualTo(XYZ.BasisZ)).ToList();
             foreach (Face face in faces)
             {
                 result += face.Area;
+                try
+                {
+                    CreateDirectShape.Execute(doc, face, "aaaa");
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
             return result;
@@ -65,7 +73,7 @@ namespace AlphaBIM
             return result;
         }
 
-        public static double CalAreaNotTopNotBottom(this List<Face> faces)
+        public static double CalAreaNotTopNotBottom(this List<Face> faces, Document doc = null)
         {
             double result = 0;
             faces = faces
@@ -75,7 +83,17 @@ namespace AlphaBIM
             foreach (Face face in faces)
             {
                 result += face.Area;
+                try
+                {
+                    CreateDirectShape.Execute(doc, face, "aaaa");
+                }
+                catch (Exception e)
+                {
+
+                }
+
             }
+
 
             return result;
         }

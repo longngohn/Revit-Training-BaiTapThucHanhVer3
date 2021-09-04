@@ -125,7 +125,7 @@
     <Compile Include="Lesson 13\FormworkAreaWindow.xaml.cs">
       <DependentUpon>FormworkAreaWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lesson 13\Model\BeamColumnSelectionFilter.cs" />
+    <Compile Include="Lesson 13\Model\BeamColumnWallSelectionFilter.cs" />
     <Compile Include="Lesson 13\Model\CreateDirecShapeForFace.cs" />
     <Compile Include="Lesson 13\Model\CreateShareParameterFormworkArea.cs" />
     <Compile Include="Lesson 13\Model\Interactor.cs" />
