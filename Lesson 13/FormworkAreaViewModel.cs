@@ -187,9 +187,11 @@ namespace AlphaBIM
 
                     double beamSubBeam = 0;
                     double beamSubCol = 0;
+                    double beamSubWall = 0;
 
                     double colSubCol = 0;
                     double colSubBeam = 0;
+                    double colSubWall = 0;
 
                     double wallSubCol = 0;
                     double wallSubBeam = 0;
@@ -237,10 +239,10 @@ namespace AlphaBIM
                                 BooleanOperationsType.Union);
                             List<Face> facesUnion = union.GetFaces();
 
-                            //foreach (Face face in facesUnion)
-                            //{
-                            //    CreateDirectShape.Execute(Doc, face,"aaa");
-                            //}
+                            foreach (Face face in facesUnion)
+                            {
+                                CreateDirectShape.Execute(Doc, face,"aaa");
+                            }
 
                             double unionArea = 0;
                             if (element.Category.Id.IntegerValue == ostStructuralColumns)
@@ -279,6 +281,10 @@ namespace AlphaBIM
                                     {
                                         colSubBeam += areaIntersect;
                                     }
+                                    else if (intersectElement.Category.Id.IntegerValue == ostWalls)
+                                    {
+                                        colSubWall += areaIntersect;
+                                    }
                                 }
                                 else if (element.Category.Id.IntegerValue == ostStructuralFraming)
                                 {
@@ -289,6 +295,10 @@ namespace AlphaBIM
                                     else if (intersectElement.Category.Id.IntegerValue == ostStructuralFraming)
                                     {
                                         beamSubBeam += areaIntersect;
+                                    }
+                                    else if (intersectElement.Category.Id.IntegerValue == ostWalls)
+                                    {
+                                        beamSubWall += areaIntersect;
                                     }
 
                                     if (IsCalBeamBottom)
@@ -333,16 +343,19 @@ namespace AlphaBIM
                         Parameter nameAlbFormworkArea = element.LookupParameter(CreateShareParameterFormworkArea.NameAlbFormworkArea);
                         Parameter nameFwColumnTotal = element.LookupParameter(CreateShareParameterFormworkArea.NameFwColumnTotal);
                         Parameter nameFwColumnSubBeam = element.LookupParameter(CreateShareParameterFormworkArea.NameFwColumnSubBeam);
+                        Parameter nameFwColumnSubWall = element.LookupParameter(CreateShareParameterFormworkArea.NameFwColumnSubWall);
                         Parameter nameFwColumnSubColumn = element.LookupParameter(CreateShareParameterFormworkArea.NameFwColumnSubColumn);
                         nameAlbFormworkArea.Set(0);
                         nameFwColumnTotal.Set(0);
                         nameFwColumnSubBeam.Set(0);
                         nameFwColumnSubColumn.Set(0);
+                        nameFwColumnSubWall.Set(0);
 
-                        nameAlbFormworkArea.Set(totalArea - colSubBeam - colSubCol);
+                        nameAlbFormworkArea.Set(totalArea - colSubBeam - colSubCol-colSubWall);
                         nameFwColumnTotal.Set(totalArea);
                         nameFwColumnSubBeam.Set(colSubBeam);
                         nameFwColumnSubColumn.Set(colSubCol);
+                        nameFwColumnSubWall.Set(colSubWall);
 
                     }
                     else if (element.Category.Id.IntegerValue == ostStructuralFraming)
@@ -351,20 +364,24 @@ namespace AlphaBIM
                         Parameter nameFwBeamTotal = element.LookupParameter(CreateShareParameterFormworkArea.NameFwBeamTotal);
                         Parameter nameFwBeamBottom = element.LookupParameter(CreateShareParameterFormworkArea.NameFwBeamBottom);
                         Parameter nameFwBeamSubCol = element.LookupParameter(CreateShareParameterFormworkArea.NameFwBeamSubCol);
+                        Parameter nameFwBeamSubWall= element.LookupParameter(CreateShareParameterFormworkArea.NameFwBeamSubWall);
+
                         Parameter nameFwBeamSubBeam = element.LookupParameter(CreateShareParameterFormworkArea.NameFwBeamSubBeam);
                         nameAlbFormworkArea.Set(0);
                         nameFwBeamTotal.Set(0);
                         nameFwBeamBottom.Set(0);
                         nameFwBeamSubCol.Set(0);
+                        nameFwBeamSubWall.Set(0);
                         nameFwBeamSubBeam.Set(0);
 
-                        nameAlbFormworkArea.Set(totalArea - beamSubBeam - beamSubCol);
+                        nameAlbFormworkArea.Set(totalArea - beamSubBeam - beamSubCol-beamSubWall);
                         nameFwBeamTotal.Set(totalArea);
                         if (IsCalBeamBottom)
                         {
                             nameFwBeamBottom.Set(beamBottom);
                         }
                         nameFwBeamSubCol.Set(beamSubCol);
+                        nameFwBeamSubWall.Set(beamSubWall);
                         nameFwBeamSubBeam.Set(beamSubBeam);
                     }
                     else if (element.Category.Id.IntegerValue == ostWalls)

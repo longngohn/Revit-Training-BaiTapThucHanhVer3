@@ -98,6 +98,19 @@ namespace AlphaBIM
                 categorieBeam,
                 true);
 
+            //Add sub wall
+            ParameterUtils.CreateSharedParamater(
+                doc,
+                app,
+                path,
+                group,
+                NameFwBeamSubWall,
+                ParameterType.Area,
+                BuiltInParameterGroup.PG_STRUCTURAL,
+                DescriptionFwBeamSubWall,
+                categorieBeam,
+                true);
+
             #endregion
 
             #region Para của cột
@@ -135,6 +148,18 @@ namespace AlphaBIM
                 ParameterType.Area,
                 BuiltInParameterGroup.PG_STRUCTURAL,
                 DescriptionFwColumnSubColumn,
+                categorieColumn,
+                true);
+
+            ParameterUtils.CreateSharedParamater(
+                doc,
+                app,
+                path,
+                group,
+                NameFwColumnSubWall,
+                ParameterType.Area,
+                BuiltInParameterGroup.PG_STRUCTURAL,
+                DescriptionFwColumnSubWall,
                 categorieColumn,
                 true);
 
@@ -209,6 +234,11 @@ namespace AlphaBIM
         internal static string NameFwBeamSubBeam { get; set; } = "FW.Beam.SubBeam";
         internal static string DescriptionFwBeamSubBeam { get; set; } = "Diện tích tiếp xúc với dầm";
 
+        internal static string NameFwBeamSubWall { get; set; } = "FW.Beam.SubWall";
+        internal static string DescriptionFwBeamSubWall { get; set; } = "Diện tích tiếp xúc với tường";
+
+
+
         internal static string NameFwColumnTotal { get; set; } = "FW.Column.Total";
         internal static string DescriptionFwColumnTotal { get; set; } = "Tổng diện tích ván khuôn";
         internal static string NameFwColumnSubBeam { get; set; } = "FW.Column.SubBeam";
@@ -216,8 +246,11 @@ namespace AlphaBIM
         internal static string NameFwColumnSubColumn{ get; set; } = "FW.Column.SubCol";
         internal static string DescriptionFwColumnSubColumn { get; set; } = "Diện tích tiếp xúc với cột";
 
+        internal static string NameFwColumnSubWall { get; set; } = "FW.Column.SubWall";
+        internal static string DescriptionFwColumnSubWall { get; set; } = "Diện tích tiếp xúc với tường";
 
-        internal static string NameFwWallTotal { get; set; } = "FW.Column.Total";
+
+        internal static string NameFwWallTotal { get; set; } = "FW.Wall.Total";
         internal static string DescriptionFwWallTotal { get; set; } = "Tổng diện tích ván khuôn";
         internal static string NameFwWallSubColumn { get; set; } = "FW.Wall.SubCol";
         internal static string DescriptionFwWallSubColumn { get; set; } = "Diện tích tiếp xúc với cột";
