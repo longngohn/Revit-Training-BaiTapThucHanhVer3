@@ -2,15 +2,10 @@
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using Autodesk.Revit.UI.Selection;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms;
-using Autodesk.Revit.UI.Selection;
-using Application = Autodesk.Revit.ApplicationServices.Application;
-using View = Autodesk.Revit.DB.View;
 
 #endregion
 
@@ -100,6 +95,8 @@ namespace AlphaBIM
 
                     #region Lấy về tất cả đối tượng intersect
 
+                    //Lọc đối tượng
+
                     List<ElementFilter> elementFilters = new List<ElementFilter>();
 
                     ElementCategoryFilter categoryFilterBeam
@@ -108,6 +105,7 @@ namespace AlphaBIM
                         = new ElementCategoryFilter(BuiltInCategory.OST_StructuralColumns);
                     ElementCategoryFilter categoryFilterWall
                         = new ElementCategoryFilter(BuiltInCategory.OST_Walls);
+
                     elementFilters.Add(categoryFilterWall);
                     elementFilters.Add(categoryFilterColumn);
                     elementFilters.Add(categoryFilterBeam);
@@ -149,22 +147,28 @@ namespace AlphaBIM
 
                     #endregion
 
+                    #region Solid1Area
+
                     List<Face> faces1 = solid1.GetFaces();
 
                     double solid1Area = 0;
                     double beamBottom = 0;
 
-                    int idIntegerValueOfElement = element.Category.Id.IntegerValue;
                     int ostStructuralFraming = (int)BuiltInCategory.OST_StructuralFraming;
                     int ostStructuralColumns = (int)BuiltInCategory.OST_StructuralColumns;
                     int ostWalls = (int)BuiltInCategory.OST_Walls;
 
-
-                    if (idIntegerValueOfElement == ostStructuralColumns)
+                    if (element.Category.Id.IntegerValue == ostStructuralColumns)
                     {
                         solid1Area = faces1.CalAreaNotTopNotBottom();
                     }
-                    else if (idIntegerValueOfElement == ostStructuralFraming)
+
+                    else if (element.Category.Id.IntegerValue == ostWalls)
+                    {
+                        solid1Area = faces1.CalAreaNotTopNotBottom();
+                    }
+
+                    else if (element.Category.Id.IntegerValue == ostStructuralFraming)
                     {
                         if (IsCalBeamBottom)
                         {
@@ -177,10 +181,7 @@ namespace AlphaBIM
                         }
                     }
 
-                    else if(idIntegerValueOfElement == ostWalls)
-                    {
-                        solid1Area = faces1.CalAreaNotTopNotBottom();
-                    }
+                    #endregion
 
                     double totalArea = solid1Area;
 
@@ -194,19 +195,23 @@ namespace AlphaBIM
                     double wallSubBeam = 0;
                     double wallSubWall = 0;
 
+                    #region Solid2Area
 
                     foreach (Element intersectElement in intersectElements)
                     {
+
                         Solid solid2 = intersectElement.GetSolid();
 
                         List<Face> faces2 = solid2.GetFaces();
 
                         double solid2Area = 0;
-                        if (idIntegerValueOfElement == ostStructuralColumns)
+
+                        if (element.Category.Id.IntegerValue == ostStructuralColumns)
                         {
                             solid2Area = faces2.CalAreaNotTopNotBottom();
                         }
-                        else if(idIntegerValueOfElement == ostStructuralFraming)
+
+                        else if (element.Category.Id.IntegerValue == ostStructuralFraming)
                         {
                             if (!IsCalBeamBottom)
                             {
@@ -217,7 +222,8 @@ namespace AlphaBIM
                                 solid2Area = faces2.CalAreaNotTop();
                             }
                         }
-                        else if (idIntegerValueOfElement == ostWalls)
+
+                        else if (element.Category.Id.IntegerValue == ostWalls)
                         {
                             solid2Area = faces2.CalAreaNotTopNotBottom();
                         }
@@ -231,17 +237,17 @@ namespace AlphaBIM
                                 BooleanOperationsType.Union);
                             List<Face> facesUnion = union.GetFaces();
 
-                            foreach (Face face in facesUnion)
-                            {
-                                CreateDirectShape.Execute(Doc, face,"aaa");
-                            }
+                            //foreach (Face face in facesUnion)
+                            //{
+                            //    CreateDirectShape.Execute(Doc, face,"aaa");
+                            //}
 
                             double unionArea = 0;
-                            if (idIntegerValueOfElement == ostStructuralColumns)
+                            if (element.Category.Id.IntegerValue == ostStructuralColumns)
                             {
                                 unionArea = facesUnion.CalAreaNotTopNotBottom();
                             }
-                            else if (idIntegerValueOfElement == ostStructuralFraming)
+                            else if (element.Category.Id.IntegerValue == ostStructuralFraming)
                             {
                                 if (!IsCalBeamBottom)
                                 {
@@ -249,21 +255,21 @@ namespace AlphaBIM
                                 }
                                 else
                                 {
-                                    unionArea=facesUnion.CalAreaNotTop();
+                                    unionArea = facesUnion.CalAreaNotTop();
                                 }
                             }
 
-                            else if (idIntegerValueOfElement == ostWalls)
+                            else if (element.Category.Id.IntegerValue == ostWalls)
                             {
                                 unionArea = facesUnion.CalAreaNotTopNotBottom();
                             }
 
 
                             double areaIntersect = (solid1Area + solid2Area - unionArea) / 2;
-                            
+
                             if (areaIntersect > 0)
                             {
-                                if (idIntegerValueOfElement == ostStructuralColumns)
+                                if (element.Category.Id.IntegerValue == ostStructuralColumns)
                                 {
                                     if (intersectElement.Category.Id.IntegerValue == ostStructuralColumns)
                                     {
@@ -274,7 +280,7 @@ namespace AlphaBIM
                                         colSubBeam += areaIntersect;
                                     }
                                 }
-                                else if (idIntegerValueOfElement == ostStructuralFraming)
+                                else if (element.Category.Id.IntegerValue == ostStructuralFraming)
                                 {
                                     if (intersectElement.Category.Id.IntegerValue == ostStructuralColumns)
                                     {
@@ -293,7 +299,7 @@ namespace AlphaBIM
                                     }
                                 }
 
-                                else if (idIntegerValueOfElement == ostWalls)
+                                else if (element.Category.Id.IntegerValue == ostWalls)
                                 {
 
                                     if (intersectElement.Category.Id.IntegerValue == ostStructuralColumns)
@@ -318,7 +324,11 @@ namespace AlphaBIM
                         }
                     }
 
-                    if (idIntegerValueOfElement == ostStructuralColumns)
+                    #endregion
+
+                    #region Ghi giá trị cho Parameter
+
+                    if (element.Category.Id.IntegerValue == ostStructuralColumns)
                     {
                         Parameter nameAlbFormworkArea = element.LookupParameter(CreateShareParameterFormworkArea.NameAlbFormworkArea);
                         Parameter nameFwColumnTotal = element.LookupParameter(CreateShareParameterFormworkArea.NameFwColumnTotal);
@@ -335,7 +345,7 @@ namespace AlphaBIM
                         nameFwColumnSubColumn.Set(colSubCol);
 
                     }
-                    else if (idIntegerValueOfElement == ostStructuralFraming)
+                    else if (element.Category.Id.IntegerValue == ostStructuralFraming)
                     {
                         Parameter nameAlbFormworkArea = element.LookupParameter(CreateShareParameterFormworkArea.NameAlbFormworkArea);
                         Parameter nameFwBeamTotal = element.LookupParameter(CreateShareParameterFormworkArea.NameFwBeamTotal);
@@ -357,28 +367,30 @@ namespace AlphaBIM
                         nameFwBeamSubCol.Set(beamSubCol);
                         nameFwBeamSubBeam.Set(beamSubBeam);
                     }
-
-                    else if (idIntegerValueOfElement == ostWalls)
+                    else if (element.Category.Id.IntegerValue == ostWalls)
                     {
                         Parameter nameAlbFormworkArea = element.LookupParameter(CreateShareParameterFormworkArea.NameAlbFormworkArea);
                         Parameter nameFwWallTotal = element.LookupParameter(CreateShareParameterFormworkArea.NameFwWallTotal);
-                 
+
                         Parameter nameFwWallSubCol = element.LookupParameter(CreateShareParameterFormworkArea.NameFwWallSubColumn);
                         Parameter nameFwWallSubBeam = element.LookupParameter(CreateShareParameterFormworkArea.NameFwWallSubBeam);
                         Parameter nameFwWallSubWall = element.LookupParameter(CreateShareParameterFormworkArea.NameFwWallSubWall);
-                        
+
                         nameAlbFormworkArea.Set(0);
                         nameFwWallTotal.Set(0);
                         nameFwWallSubCol.Set(0);
                         nameFwWallSubBeam.Set(0);
                         nameFwWallSubWall.Set(0);
 
-                        nameAlbFormworkArea.Set(totalArea - wallSubCol - wallSubCol -wallSubWall);
+                        nameAlbFormworkArea.Set(totalArea - wallSubCol - wallSubCol - wallSubWall);
                         nameFwWallTotal.Set(totalArea);
                         nameFwWallSubCol.Set(wallSubCol);
                         nameFwWallSubBeam.Set(wallSubBeam);
                         nameFwWallSubWall.Set(wallSubWall);
                     }
+
+                    #endregion
+
                 }
 
                 tran.Commit();
